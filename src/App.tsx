@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState, ChangeEvent } from 'react'
+import './App.css'
+import CardList from './components/CardList'
+import SearchBox from './components/SearchBox'
+import { ContactType } from './types/Contact'
+import { fetchData } from './utils/fetchData'
 
-function App() {
+const App = () => {
+  const [searchField, setSearchField] = useState('')
+  const [contacts, setContacts] = useState<ContactType[]>([])
+  const [filteredContacts, setFilterContacts] = useState(contacts)
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const users = await fetchData<ContactType[]>(
+        'https://randomuser.me/api/?results=10&nat=us'
+      )
+      setContacts(users)
+    }
+    fetchUsers()
+  }, [])
+
+  useEffect(() => {
+    const newFilteredContacts = contacts.filter((contact) => {
+      return (
+        contact.name.first.toLocaleLowerCase().includes(searchField) ||
+        contact.name.last.toLocaleLowerCase().includes(searchField)
+      )
+    })
+
+    setFilterContacts(newFilteredContacts)
+  }, [contacts, searchField])
+
+  const onSearchChange = (event: ChangeEvent): void => {
+    const searchFieldString = event.target.value.toLocaleLowerCase()
+    setSearchField(searchFieldString)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1 className='app-title'>Contacts List</h1>
+
+      <SearchBox
+        className='contacts-search-box'
+        onChangeHandler={onSearchChange}
+        placeholder='search contacts'
+      />
+      <CardList contacts={filteredContacts} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
