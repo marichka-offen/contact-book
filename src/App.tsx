@@ -32,7 +32,8 @@ const App = () => {
   }, [contacts, searchField])
 
   const onSearchChange = (event: ChangeEvent): void => {
-    const searchFieldString = event.target.value.toLocaleLowerCase()
+    const target = event.target as HTMLTextAreaElement
+    const searchFieldString = target.value.toLocaleLowerCase()
     setSearchField(searchFieldString)
   }
 
