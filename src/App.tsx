@@ -1,9 +1,9 @@
 import { useEffect, useState, ChangeEvent } from 'react'
-import './App.css'
 import CardList from './components/CardList'
 import SearchBox from './components/SearchBox'
 import { ContactType } from './types/Contact'
 import { fetchData } from './utils/fetchData'
+import './App.css'
 
 const App = () => {
   const [searchField, setSearchField] = useState('')
