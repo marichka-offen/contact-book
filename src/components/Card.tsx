@@ -1,6 +1,7 @@
 import '../App.css'
 import { ContactType } from '../types/Contact'
 import { Mail, Phone, MapPin } from 'react-feather'
+import { motion } from 'framer-motion'
 
 interface IProps {
   contact: ContactType
@@ -16,7 +17,13 @@ const Card = ({ contact }: IProps) => {
   } = contact
 
   return (
-    <div className='card'>
+    <motion.div
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      className='card'
+    >
       <img
         className='card__image'
         alt={`contact ${first}`}
@@ -55,7 +62,7 @@ const Card = ({ contact }: IProps) => {
           {city}, {state}
         </p>
       </div> */}
-    </div>
+    </motion.div>
   )
 }
 

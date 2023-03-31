@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto&display=swap');
 
 :root {
+  --xs-pixel: 12px;
   --sm-pixel: 16px;
   --md-pixel: 24px;
   --lg-pixel: 32px;
@@ -17,13 +18,14 @@ body {
   background: linear-gradient(to right, #009245, #fcee21);
   background-attachment: fixed;
   margin: 0;
+  margin: 5% 10%;
   font-family: 'Roboto', sans-serif;
   font-size: var(--sm-pixel);
 }
 
 /* APP */
 .App {
-  padding: var(--lg-pixel);
+  /* padding: var(--lg-pixel); */
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -39,6 +41,7 @@ body {
   font-weight: bold;
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  text-shadow: 3px 3px 5px rgba(99, 99, 99, 0.5);
 }
 
 /* SEARCH BOX */
@@ -82,7 +85,7 @@ body {
 .card__contact-info {
   display: flex;
   flex-direction: column;
-  gap: var(--md-pixel);
+  gap: var(--sm-pixel);
   margin-top: var(--sm-pixel);
 }
 
@@ -93,7 +96,7 @@ body {
 .card__contact-details {
   display: flex;
   flex-direction: column;
-  gap: var(--sm-pixel);
+  gap: var(--xs-pixel);
   font-size: var(--sm-pixel);
 }
 
